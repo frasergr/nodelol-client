@@ -1,14 +1,17 @@
-import React, { Fragment } from 'react';
-
+import React, { Fragment, useEffect } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Container } from 'reactstrap'
-
 import './App.css';
-
 import AppNavbar from './components/AppNavbar';
 import ItemList from './components/ItemList';
 import ItemModal from "./components/ItemModal";
+import { loadUser } from './actions/authActions';
 
-const App = () => {
+const App = ({ loadUser }) => {
+    useEffect(() => {
+        loadUser();
+    });
     return (
         <Fragment>
           <AppNavbar/>
@@ -20,4 +23,8 @@ const App = () => {
     )
 };
 
-export default App;
+App.propTypes = {
+    loadUser: PropTypes.func.isRequired
+};
+
+export default connect(null, { loadUser })(App);

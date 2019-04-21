@@ -1,4 +1,6 @@
 import React, { Fragment, useState } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import {
     Collapse,
     Navbar,
@@ -6,29 +8,58 @@ import {
     NavbarBrand,
     Nav,
     NavItem,
-    NavLink,
     Container
 } from 'reactstrap';
 
-const AppNavbar = ({ ...props }) => {
-  const [ isOpen, toggleIsOpen ] = useState(false);
-  return (
-    <Fragment>
-      <Navbar color={'dark'} dark expand={'sm'} className={'mb-5 sticky-top'}>
-        <Container>
-        <NavbarBrand href={'/'}>node.lol</NavbarBrand>
-        <NavbarToggler onClick={() => toggleIsOpen(!isOpen)}/>
-        <Collapse isOpen={isOpen} navbar>
-          <Nav className={'ml-auto'} navbar>
+import RegisterModal from './RegisterModal';
+import LoginModal from './LoginModal';
+import LogOut from './LogOut';
+
+const AppNavbar = ({ auth: { isAuthenticated, user } }) => {
+    const [ isOpen, toggleIsOpen ] = useState(false);
+    const authLinks = (
+        <Fragment>
             <NavItem>
-              <NavLink href={'/'}>GitHub</NavLink>
+                <span className={'navbar-text mr-3'}>
+                    <strong>{ user ? `Welcome ${user.name}` : '' }</strong>
+                </span>
             </NavItem>
-          </Nav>
-        </Collapse>
-        </Container>
-      </Navbar>
-    </Fragment>
-  )
+            <NavItem>
+                <LogOut/>
+            </NavItem>
+        </Fragment>
+    );
+    const guestLinks = (
+        <Fragment>
+            <NavItem>
+                <RegisterModal/>
+            </NavItem>
+            <NavItem>
+                <LoginModal/>
+            </NavItem>
+        </Fragment>
+    );
+    return (
+        <Navbar color={'dark'} dark expand={'sm'} className={'mb-5 sticky-top'}>
+            <Container>
+                <NavbarBrand href={'/'}>node.lol</NavbarBrand>
+                <NavbarToggler onClick={() => toggleIsOpen(!isOpen)}/>
+                <Collapse isOpen={isOpen} navbar>
+                    <Nav className={'ml-auto'} navbar>
+                        { isAuthenticated ? authLinks : guestLinks }
+                    </Nav>
+                </Collapse>
+            </Container>
+        </Navbar>
+    )
 };
 
-export default AppNavbar;
+AppNavbar.propTypes = {
+    auth: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+    auth: state.auth
+});
+
+export default connect(mapStateToProps, null)(AppNavbar);
