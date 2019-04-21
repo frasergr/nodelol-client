@@ -1,5 +1,5 @@
 {
-  "name": "nodelol-dashboard",
+  "name": "nodelol-client",
   "version": "0.0.1",
   "description": "",
   "main": "index.js",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/frasergr/nodelol-dashboard.git"
+    "url": "git+https://github.com/frasergr/nodelol-client.git"
   },
   "author": "frasergr",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/frasergr/nodelol-dashboard/issues"
+    "url": "https://github.com/frasergr/nodelol-client/issues"
   },
-  "homepage": "https://github.com/frasergr/nodelol-dashboard#readme",
+  "homepage": "https://github.com/frasergr/nodelol-client#readme",
   "dependencies": {
     "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
