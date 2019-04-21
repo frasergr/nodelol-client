@@ -1,5 +1,4 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
-const env = require('dotenv').config({ path: '.env' }).parsed;
 
 const htmlWebpackPlugin = new HtmlWebPackPlugin({
   template: "./src/index.html",
@@ -22,12 +21,5 @@ module.exports = {
       }
     ]
   },
-  plugins: [ htmlWebpackPlugin ],
-  devServer: {
-    port: env.CLIENT_PORT,
-    proxy: [{
-      context: ['/auth', '/api'],
-      target: 'http://0.0.0.0:' + env.SERVER_PORT
-    }]
-  }
+  plugins: [ htmlWebpackPlugin ]
 };
