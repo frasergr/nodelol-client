@@ -14,11 +14,11 @@ const App = ({ loadUser }) => {
     });
     return (
         <Fragment>
-          <AppNavbar/>
-          <Container>
-            <ItemModal/>
-            <ItemList/>
-          </Container>
+            <AppNavbar/>
+            <Container>
+                <ItemModal/>
+                <ItemList/>
+            </Container>
         </Fragment>
     )
 };

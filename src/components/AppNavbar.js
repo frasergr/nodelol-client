@@ -15,7 +15,7 @@ import RegisterModal from './RegisterModal';
 import LoginModal from './LoginModal';
 import LogOut from './LogOut';
 
-const AppNavbar = ({ auth: { isAuthenticated, user } }) => {
+const AppNavbar = ({ isAuthenticated, user }) => {
     const [ isOpen, toggleIsOpen ] = useState(false);
     const authLinks = (
         <Fragment>
@@ -55,11 +55,13 @@ const AppNavbar = ({ auth: { isAuthenticated, user } }) => {
 };
 
 AppNavbar.propTypes = {
-    auth: PropTypes.object.isRequired
+    isAuthenticated: PropTypes.bool.isRequired,
+    user: PropTypes.object
 };
 
 const mapStateToProps = state => ({
-    auth: state.auth
+    isAuthenticated: state.auth.isAuthenticated,
+    user: state.auth.user,
 });
 
 export default connect(mapStateToProps, null)(AppNavbar);
