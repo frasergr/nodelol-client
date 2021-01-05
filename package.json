@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/frasergr/nodelol-client#readme",
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "bootstrap": "^4.4.1",
     "dotenv": "^8.2.0",
     "dotenv-webpack": "^1.7.0",
